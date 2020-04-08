@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>learn grapesjs</title>
+  <link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+  <link rel="stylesheet" href="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gjs"></div>
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js"></script>
+
+  <script>
+    var editor = grapesjs.init({
+      container: '#gjs',
+      plugins: ['gjs-preset-webpage'],
+      styleManager : {
+        sectors: [{
+          name: 'Dimension',
+          buildProps: ['width', 'min-height']
+        },{
+          name: 'Extra',
+          buildProps: ['background-color', 'box-shadow']
+        }]
+      }
+    });
+
+    const styleManager = editor.StyleManager;
+
+
+    var sector = styleManager.addSector('mySector',
+      {
+        name: 'My sector',
+        open: true,
+        properties: [{ name: 'My property'}]
+      },
+      { at: 0 }
+    );
+
+  </script>
+</body>
+
+</html>

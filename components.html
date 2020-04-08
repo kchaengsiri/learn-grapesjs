@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>learn grapesjs</title>
+  <link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+  <link rel="stylesheet" href="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div id="gjs"></div>
+
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js"></script>
+
+  <script>
+    var editor = grapesjs.init({
+      container: '#gjs',
+      plugins: ['gjs-preset-webpage'],
+
+    });
+
+    function createComp(text) {
+      return `
+        <div class="my-component">
+          <p title="line1">${text}1</p>
+          <p title="line2">${text}2</p>
+          <p title="line3">${text}3</p>
+        </div>
+      `
+    }
+
+    editor.addComponents(createComp('Hello World!'));
+
+    // The wrapper is the root Component
+    const wrapper = editor.DomComponents.getWrapper();
+    console.log(wrapper)
+    const myComponent = wrapper.find('div.my-component')[0];
+    console.log(myComponent)
+    myComponent.components().forEach(component => {
+      console.log(component)
+    });
+    myComponent.components('<div>New content</div>');
+
+    // console.log(editor)
+    // const cm = editor.getComponents;
+    // cm.append(createComp('foo'), { at: 0 })
+    // cm.append(createComp('bar'), { at: 0 })
+
+    // const sm = editor.StorageManager
+    // const state = sm.getCurrentStorage()
+    // console.log(state)
+  </script>
+</body>
+</html>

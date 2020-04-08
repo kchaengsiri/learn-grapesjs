@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>learn grapesjs</title>
+  <link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+  <link rel="stylesheet" href="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gjs"></div>
+
+  <!-- <div>
+    <button type="button" id="load">Load from DB</button>
+  </div> -->
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js"></script>
+
+  <script>
+    // https://grapesjs.com/docs/getting-started.html#store-load-data
+    // https://grapesjs.com/docs/api/storage_manager.html#storagemanager
+    // https://github.com/artf/grapesjs/blob/master/src/storage_manager/config/config.js
+
+    var editor = grapesjs.init({
+      container: '#gjs',
+      plugins: ['gjs-preset-webpage'],
+      storageManager: {
+        type: 'simple-storage',
+        autosave: false,
+        autoload: false
+      },
+    });
+
+    let dummyDB
+
+    // `simple-storage` implementation
+    let SimpleStorage = {};
+    editor.StorageManager.add('simple-storage', {
+      /**
+       * Load the data
+       * @param  {Array} keys Array containing values to load, eg, ['gjs-components', 'gjs-style', ...]
+       * @param  {Function} clb Callback function to call when the load is ended
+       * @param  {Function} clbErr Callback function to call in case of errors
+       */
+      load(keys, clb, clbErr) {
+        const result = {};
+
+        keys.forEach(key => {
+          const value = SimpleStorage[key];
+          if (value) {
+            result[key] = value;
+          }
+        });
+
+        // Might be called inside some async method
+        clb(result);
+      },
+
+      /**
+       * Store the data
+       * @param  {Object} data Data object to store
+       * @param  {Function} clb Callback function to call when the load is ended
+       * @param  {Function} clbErr Callback function to call in case of errors
+       */
+      store(data, clb, clbErr) {
+        for (let key in data) {
+          SimpleStorage[key] = data[key];
+        }
+        // Might be called inside some async method
+        clb();
+      }
+    });
+
+    // Add the buttons
+    editor.Panels.addButton('options', [
+      {
+        id: 'save-db',
+        label: 'save',
+        command: 'save-db',
+      },
+      {
+        id: 'load-db',
+        label: 'load',
+        command: 'load-db',
+      }
+    ])
+
+    // Add the commands
+    editor.Commands.add('save-db', {
+      run: function (editor, sender) {
+        // turn off the button
+        sender && sender.set('active', 0)
+        // update `SimpleStorage`
+        editor.store()
+
+        const styles = editor.getCss()
+        const html = editor.getHtml()
+
+        // send `SimpleStorage` (and also final CSS and HTML) to api
+        if (editor.DomComponents.getComponents().length > 0) {
+          sendToDB(SimpleStorage, function (error) {
+            if (error) {
+              console.error(error)
+            }
+            console.log('save done!')
+          })
+        }
+      }
+    })
+
+    editor.Commands.add('load-db', {
+      run: function (editor, sender) {
+        // turn off the button
+        sender && sender.set('active', 0)
+
+        getFromDB(function (error, result) {
+          if (error) {
+            console.error(error)
+            return
+          }
+
+          // update storage
+          SimpleStorage = result
+
+          // clear components
+          editor.DomComponents.clear();
+          // clear styles
+          editor.CssComposer.clear();
+          // clear undo history
+          editor.UndoManager.clear();
+
+          // load `SimpleStorage` to editor canvas
+          editor.load();
+        })
+      }
+    })
+
+    // // load from db button on click handler
+    // const loadBtn = document.querySelector('#load')
+    // loadBtn.addEventListener('click', function (event) {
+    //   // set button to load state
+    //   loadBtn.innerHTML = 'Loading...'
+    //   loadBtn.disabled = true;
+
+    //   getFromDB(function (error, result) {
+    //     // set button to normal state
+    //     loadBtn.innerHTML = 'Load from DB'
+    //     loadBtn.disabled = false;
+
+    //     if (error) {
+    //       console.error(error)
+    //       return
+    //     }
+
+    //     // update storage
+    //     SimpleStorage = result
+
+    //     // clear components
+    //     editor.DomComponents.clear();
+    //     // clear styles
+    //     editor.CssComposer.clear();
+    //     // clear undo history
+    //     editor.UndoManager.clear();
+
+    //     // load `SimpleStorage` to editor canvas
+    //     editor.load();
+    //   })
+    // })
+
+
+    function sendToDB(data, cb) {
+      // simulate api call by adding 2 sec timeout
+      setTimeout(function () {
+        dummyDB = JSON.stringify(data)
+        if (dummyDB) {
+          cb(null)
+        } else {
+          cb(new Error('save failed'))
+        }
+      }, 2000)
+    }
+
+
+    function getFromDB(cb) {
+      // simulate api call by adding 2 sec timeout
+      setTimeout(function () {
+        if (dummyDB) {
+          cb(null, JSON.parse(dummyDB))
+        } else {
+          cb(new Error('not found'))
+        }
+      }, 2000)
+    }
+  </script>
+</body>
+
+</html>

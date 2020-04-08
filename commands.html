@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+  <link rel="stylesheet" href="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .gjs-block {
+      width: auto;
+      height: auto;
+      min-height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="gjsBody"></div>
+  <div id="gjsBlocks"></div>
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js"></script>
+
+  <script>
+    var editor = grapesjs.init({
+      container: '#gjsBody',
+      plugins: ['gjs-preset-webpage'],
+      // add default commands
+      commands: {
+        defaults: [
+          {
+            id: 'cmd1',
+            run: function() {
+              alert('This is my command 1');
+            },
+          },
+          { // stateful command
+            id: 'cmd3',
+            run: function() {
+              alert('This command 3 is now active');
+              return {
+                activated: new Date(),
+              }
+            },
+            stop(editor) {
+              alert('This command 3 is disabled');
+            },
+          }
+        ],
+      }
+    });
+
+    // add commands
+    const commands = editor.Commands;
+    commands.add('cmd2', (editor, sender, options = {}) => {
+      alert(`This is my command2 ${options.some}`);
+    });
+
+    // show all commands
+    console.log('commands:', editor.Commands.getAll())
+
+    // get all active commands
+    console.log('active commands:', commands.getActive())
+
+    // check the command state
+    console.log('command 3 state:', commands.isActive('cmd3'))
+
+    // disable command
+    // console.log('command 3 state:', editor.stopCommand('cmd3'))
+
+    // extend
+    commands.add('cmd4', {
+      someFunction1() {
+        alert('cmd4:f1');
+      },
+      someFunction2() {
+        alert('cmd4:f2');
+      },
+      run() {
+        this.someFunction1();
+        this.someFunction2();
+      },
+    });
+
+    // intercept
+    editor.on('run:cmd2', () => {
+      console.log('intercept:After `cmd2` execution');
+    });
+    editor.on('run:cmd2:before', () => {
+      console.log('intercept:Before `cmd2` execution');
+    });
+
+    // intercept for stateful commands
+    editor.on('stop:cmd3', () => {
+      console.log('intercept:stateful:After `cmd3` is stopped');
+    });
+    editor.on('stop:cmd3:before', () => {
+      console.log('intercept:stateful:Before `cmd3` is stopped');
+    });
+
+    // run commands
+    editor.runCommand('cmd1');
+    editor.runCommand('cmd2', { some: 'option' });
+    editor.runCommand('cmd3');
+    editor.runCommand('cmd4');
+  </script>
+</body>
+</html>

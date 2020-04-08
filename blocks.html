@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>learn grapesjs</title>
+  <link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+  <link rel="stylesheet" href="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* We can remove the border we've set at the beginnig */
+    #gjs {
+      border: none;
+    }
+
+    .gjs-block {
+      width: auto;
+      height: auto;
+      min-height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gjs"></div>
+  <div id="blocks"></div>
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js"></script>
+
+  <script>
+    // https://grapesjs.com/docs/modules/Blocks.html#custom-render
+    // https://grapesjs.com/docs/api/block_manager.html
+
+    var editor = grapesjs.init({
+      container: '#gjs',
+      // plugins: ['gjs-preset-webpage'],
+    });
+
+    var blockManager = editor.BlockManager;
+
+    blockManager.add('simple-block', {
+      label: 'simple-block',
+      category: 'my-custom',
+      content: '<div class="simple-block">This is a simple block</div>',
+    });
+
+    blockManager.add('my-text', {
+      label: 'my-text',
+      category: 'my-custom',
+      content: '<div data-gjs-type="text">Insert your text here</div>',
+    })
+
+    // Define Components
+    blockManager.add('my-component', {
+      label: 'my-component',
+      category: 'my-custom',
+      content: {
+        tagName: 'div',
+        // draggable: false,
+        attributes: { 'some-attribute': 'some-value' },
+        components: [
+          {
+            tagName: 'span',
+            content: '<b>Some static content</b>',
+          },
+          {
+            tagName: 'div',
+            // use `content` for static strings, `components` string will be parsed
+            // and transformed in Components
+            components: '<span>HTML at some point</span>',
+          }
+        ]
+      }
+    })
+
+    console.log(blockManager)
+
+    blockManager.render();
+
+    const customBlocks = [
+      {
+        id: 'my-section', // id is mandatory
+        label: '<b>my-section</b>', // You can use HTML/SVG inside labels
+        category: 'my-custom',
+        content: {
+          type: 'text',
+          tagName: 'section',
+          classes: 'my-section',
+          // style: {
+          //   height: '350px'
+          // },
+          content: `
+            <h1>This is a simple title</h1>
+            <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
+          `
+        }
+      },
+      {
+        id: 'image',
+        label: 'hey-Image',
+        category: 'my-custom',
+        // Select the component once it's dropped
+        select: true,
+        // You can pass components as a JSON instead of a simple HTML string,
+        // in this case we also use a defined component type `image`
+        content: { type: 'image' },
+        // This triggers `active` event on dropped components and the `image`
+        // reacts by opening the AssetManager
+        activate: true,
+      }
+    ]
+
+    // add custom block to specific element
+    const newBlocksEl = blockManager.render(customBlocks, { external: true, ignoreCategories: true });
+    document.getElementById('blocks').appendChild(newBlocksEl);
+
+    // add css class
+    editor.CssComposer.setRule('.my-section', { color: '#ff0', background: '#eee' });
+  </script>
+</body>
+
+</html>

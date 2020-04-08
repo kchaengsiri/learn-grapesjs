@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    #il3o {
+      height: 350px;
+      width: 100%;
+      min-height: 50vh;
+    }
+
+    .row {
+      display: table;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      width: 100%;
+    }
+
+    .cell {
+      width: 8%;
+      display: table-cell;
+      height: 75px;
+    }
+
+    .quote {
+      text-align: center;
+      line-height: 2rem;
+      font-size: 2rem;
+    }
+
+    .heading {
+      font-size: 1.5rem;
+    }
+
+    #ircgw {
+      color: black;
+    }
+
+    #igtjf {
+      color: black;
+    }
+
+    #imxyv {
+      color: black;
+    }
+
+    .navbar-items-c {
+      display: inline-block;
+      float: right;
+    }
+
+    .navbar {
+      background-color: rgb(34, 34, 34);
+      color: rgb(221, 221, 221);
+      min-height: 50px;
+      width: 100%;
+    }
+
+    .navbar-container {
+      max-width: 950px;
+      margin-top: 0px;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-left: auto;
+      width: 95%;
+    }
+
+    .navbar-container::after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    .navbar-brand {
+      vertical-align: top;
+      display: inline-block;
+      padding-top: 5px;
+      padding-right: 5px;
+      padding-bottom: 5px;
+      padding-left: 5px;
+      min-height: 50px;
+      min-width: 50px;
+      color: inherit;
+      text-decoration-line: none;
+      text-decoration-style: initial;
+      text-decoration-color: initial;
+    }
+
+    .navbar-menu {
+      padding-top: 10px;
+      padding-right: 0px;
+      padding-bottom: 10px;
+      padding-left: 0px;
+      display: block;
+      float: right;
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+    }
+
+    .navbar-menu-link {
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      color: inherit;
+      text-decoration-line: none;
+      text-decoration-style: initial;
+      text-decoration-color: initial;
+      display: inline-block;
+      padding-top: 10px;
+      padding-right: 15px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+    }
+
+    .navbar-burger {
+      margin-top: 10px;
+      margin-right: 0px;
+      margin-bottom: 10px;
+      margin-left: 0px;
+      width: 45px;
+      padding-top: 5px;
+      padding-right: 10px;
+      padding-bottom: 5px;
+      padding-left: 10px;
+      display: none;
+      float: right;
+      cursor: pointer;
+    }
+
+    .navbar-burger-line {
+      padding-top: 1px;
+      padding-right: 1px;
+      padding-bottom: 1px;
+      padding-left: 1px;
+      background-color: white;
+      margin-top: 5px;
+      margin-right: 0px;
+      margin-bottom: 5px;
+      margin-left: 0px;
+    }
+
+    .countdown {
+      text-align: center;
+      font-family: Helvetica, serif;
+    }
+
+    .countdown-block {
+      display: inline-block;
+      margin-top: 0px;
+      margin-right: 10px;
+      margin-bottom: 0px;
+      margin-left: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+    }
+
+    .countdown-digit {
+      font-size: 5rem;
+    }
+
+    .countdown-endtext {
+      font-size: 5rem;
+    }
+
+    .countdown-cont {
+      display: inline-block;
+    }
+
+    #inp76 {
+      width: 41.8%;
+    }
+
+    #i3kmu {
+      width: 70%;
+      min-height: 100px;
+      text-align: center;
+    }
+
+    .paragraph {
+      min-height: auto;
+    }
+
+    #i288h {
+      display: inline-block;
+      padding: 5px;
+      min-height: 50px;
+      min-width: 50px;
+    }
+
+    #i0gov {
+      display: inline-block;
+      padding: 5px;
+      min-height: 50px;
+      min-width: 50px;
+    }
+
+    #ir92g {
+      display: inline-block;
+      padding: 5px;
+      min-height: 50px;
+      min-width: 50px;
+    }
+
+    #iyzd8 {
+      display: inline-block;
+      padding: 5px;
+      min-height: 50px;
+      min-width: 50px;
+    }
+
+    #i7t9c {
+      padding: 10px;
+    }
+
+    #icrtv {
+      padding: 10px;
+    }
+
+    #i1udm {
+      padding: 10px;
+    }
+
+    #i44qj {
+      padding: 10px;
+    }
+
+    #ie1r2 {
+      padding: 10px;
+    }
+
+    #iczzj {
+      padding: 10px;
+    }
+
+    #i7jz9 {
+      padding: 10px;
+    }
+
+    #i4r7w {
+      padding: 10px;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    #irh0g {
+      color: black;
+      width: 100%;
+      min-height: 200px;
+    }
+
+    #ievj7l {
+      padding: 10px;
+    }
+
+    #ian0wk {
+      padding: 10px;
+    }
+
+    #iq838o {
+      color: black;
+    }
+
+    #iw5d7l {
+      color: black;
+    }
+
+    #ijh0ax {
+      color: black;
+    }
+
+    #i4xwxx {
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      .cell {
+        width: 100%;
+        display: block;
+      }
+
+      .navbar-burger {
+        display: block;
+      }
+
+      .navbar-items-c {
+        display: none;
+        width: 100%;
+      }
+
+      .navbar-menu {
+        width: 100%;
+      }
+
+      .navbar-menu-link {
+        display: block;
+      }
+    }
+  </style>
+
+  <div data-gjs="navbar" class="navbar">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand"></a>
+      <div id="i9xp3" class="navbar-burger">
+        <div class="navbar-burger-line">
+        </div>
+        <div class="navbar-burger-line">
+        </div>
+        <div class="navbar-burger-line">
+        </div>
+      </div>
+      <div data-gjs="navbar-items" class="navbar-items-c">
+        <nav data-gjs="navbar-menu" class="navbar-menu">
+          <a href="#" class="navbar-menu-link">Home</a>
+          <a href="#" class="navbar-menu-link">About</a>
+          <a href="#" class="navbar-menu-link">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <video allowfullscreen="allowfullscreen" id="il3o" src="img/video2.webm" controls="controls">
+  </video>
+  <div id="i3fhf" class="countdown">
+    <span data-js="countdown" class="countdown-cont">
+      <div class="countdown-block">
+        <div data-js="countdown-day" class="countdown-digit">
+        </div>
+        <div class="countdown-label">days
+        </div>
+      </div>
+      <div class="countdown-block">
+        <div data-js="countdown-hour" class="countdown-digit">
+        </div>
+        <div class="countdown-label">hours
+        </div>
+      </div>
+      <div class="countdown-block">
+        <div data-js="countdown-minute" class="countdown-digit">
+        </div>
+        <div class="countdown-label">minutes
+        </div>
+      </div>
+      <div class="countdown-block">
+        <div data-js="countdown-second" class="countdown-digit">
+        </div>
+        <div class="countdown-label">seconds
+        </div>
+      </div>
+    </span>
+    <span data-js="countdown-endtext" class="countdown-endtext"></span>
+  </div>
+  <div class="row">
+    <div class="cell">
+      <section class="bdg-sect">
+        <h1 class="heading">Insert title here
+        </h1>
+        <img id="imxyv"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" />
+        <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua
+        </p>
+      </section>
+    </div>
+    <div class="cell">
+      <section class="bdg-sect">
+        <h1 class="heading">Insert title here
+        </h1>
+        <img id="igtjf"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" />
+        <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua
+        </p>
+      </section>
+    </div>
+    <div class="cell">
+      <section class="bdg-sect">
+        <h1 class="heading">Insert title here
+        </h1>
+        <img id="ircgw"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" />
+        <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua
+        </p>
+      </section>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell">
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell" id="ihz3t">
+      <blockquote class="quote">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ipsum dolor
+        sit
+      </blockquote>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell">
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell">
+      <img id="irh0g"
+        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" />
+      <div id="ian0wk">Insert your text here
+      </div>
+      <div id="ievj7l">Insert your text here
+      </div>
+    </div>
+  </div>
+  <div class="row" id="i41am">
+    <div class="cell" id="ibdx3">
+      <div id="i4r7w">Insert your text here
+      </div>
+      <div class="row" id="i25rj">
+        <div class="cell">
+          <div id="i44qj">Insert your text here
+          </div>
+          <div id="iczzj">Insert your text here
+          </div>
+        </div>
+        <div class="cell">
+          <div id="i7t9c">Insert your text here
+          </div>
+          <div id="icrtv">Insert your text here
+          </div>
+          <div id="i7jz9">Insert your text here
+          </div>
+        </div>
+        <div class="cell" id="i86mf">
+          <div id="i1udm">Insert your text here
+          </div>
+          <div id="ie1r2">Insert your text here
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cell" id="ikvim">
+      <div class="row" id="i9jkt">
+        <div class="cell" id="inp76">
+          <section class="bdg-sect">
+          </section>
+          <section class="bdg-sect">
+            <h1 class="heading">Insert title here
+            </h1>
+            <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua
+            </p>
+          </section>
+        </div>
+        <div class="cell" id="i3kmu">
+          <div class="row">
+            <div class="cell" id="i0ube">
+              <a id="i288h"><img id="iq838o"
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" /></a>
+              <a id="i0gov"><img id="iw5d7l"
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" /></a>
+              <a id="ir92g"><img id="ijh0ax"
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" /></a>
+              <a id="iyzd8"><img id="i4xwxx"
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>var items = document.querySelectorAll('#i9xp3');
+    for (var i = 0, len = items.length; i < len; i++) {
+      (function () {
+        var e, t = 0, n = function () {
+          var e, t = document.createElement("void"), n = {
+            transition: "transitionend", OTransition: "oTransitionEnd", MozTransition: "transitionend", WebkitTransition: "webkitTransitionEnd"
+          };
+          for (e in n) if (void 0 !== t.style[e]) return n[e]
+        }
+          (), r = function (e) {
+            var t = window.getComputedStyle(e), n = t.display, r = (t.position, t.visibility, t.height, parseInt(t["max-height"]));
+            if ("none" !== n && "0" !== r) return e.offsetHeight;
+            e.style.height = "auto", e.style.display = "block", e.style.position = "absolute", e.style.visibility = "hidden";
+            var i = e.offsetHeight;
+            return e.style.height = "", e.style.display = "", e.style.position = "", e.style.visibility = "", i
+          }
+          , i = function (e) {
+            t = 1;
+            var n = r(e), i = e.style;
+            i.display = "block", i.transition = "max-height 0.25s ease-in-out", i.overflowY = "hidden", "" == i["max-height"] && (i["max-height"] = 0), 0 == parseInt(i["max-height"]) ? (i["max-height"] = "0", setTimeout(function () {
+              i["max-height"] = n + "px"
+            }
+              , 10)) : i["max-height"] = "0"
+          }
+          , a = function (r) {
+            if (r.preventDefault(), !t) {
+              var a = this.closest("[data-gjs=navbar]"), o = a.querySelector("[data-gjs=navbar-items]");
+              i(o), e || (o.addEventListener(n, function () {
+                t = 0;
+                var e = o.style;
+                0 == parseInt(e["max-height"]) && (e.display = "", e["max-height"] = "")
+              }
+              ), e = 1)
+            }
+          };
+        "gjs-collapse" in this || this.addEventListener("click", a), this["gjs-collapse"] = 1
+      }
+        .bind(items[i]))();
+    }
+    var items = document.querySelectorAll('#i3fhf');
+    for (var i = 0, len = items.length; i < len; i++) {
+      (function () {
+        var e = new Date("").getTime(), t = this.querySelector("[data-js=countdown]"), n = this.querySelector("[data-js=countdown-endtext]"), r = this.querySelector("[data-js=countdown-day]"), i = this.querySelector("[data-js=countdown-hour]"), a = this.querySelector("[data-js=countdown-minute]"), o = this.querySelector("[data-js=countdown-second]"), s = this.gjs_countdown_interval;
+        s && s && clearInterval(s);
+        var l = function (e, t, n, s) {
+          r.innerHTML = e < 10 ? "0" + e : e, i.innerHTML = t < 10 ? "0" + t : t, a.innerHTML = n < 10 ? "0" + n : n, o.innerHTML = s < 10 ? "0" + s : s
+        }
+          , u = function () {
+            var r = (new Date).getTime(), i = e - r, a = Math.floor(i / 864e5), o = Math.floor(i % 864e5 / 36e5), s = Math.floor(i % 36e4 / 6e4), u = Math.floor(i % 6e4 / 1e3);
+            l(a, o, s, u), i < 0 && (clearInterval(c), n.innerHTML = "EXPIRED", t.style.display = "none", n.style.display = "")
+          };
+        if (e) {
+          var c = setInterval(u, 1e3);
+          this.gjs_countdown_interval = c, n.style.display = "none", t.style.display = "", u()
+        }
+        else l(0, 0, 0, 0)
+      }
+        .bind(items[i]))();
+    }
+  </script>
+</body>
+
+</html>

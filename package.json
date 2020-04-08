@@ -1,0 +1,19 @@
+{
+  "name": "learn-grapejs-pure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node_modules/.bin/http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "grapesjs": "^0.16.3",
+    "grapesjs-preset-webpage": "^0.1.11"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  }
+}

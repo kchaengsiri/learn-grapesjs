@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>learn grapesjs</title>
+  <link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+  <link rel="stylesheet" href="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .gjs-cv-canvas {
+      width: 100%;
+      height: 100%;
+      top: 0;
+    }
+
+    .gjs-block {
+      width: auto;
+      height: auto;
+      min-height: auto;
+    }
+
+    .panel__top {
+      padding: 0;
+      width: 100%;
+      display: flex;
+      position: initial;
+      justify-content: center;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="panel__top">
+  </div>
+
+  <div id="gjs">
+  </div>
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js"></script>
+
+  <script>
+    // https://grapesjs.com/docs/getting-started.html#panels-buttons
+    // https://grapesjs.com/docs/api/panels.html#panels
+
+    var editor = grapesjs.init({
+      container: '#gjs',
+      panels: { defaults: [] },
+    });
+
+    const panelManager = editor.Panels;
+
+    console.log('panels:', panelManager.getPanels())
+
+    // create new panel
+    editor.Panels.addPanel({
+      id: 'panel-top',
+      el: '.panel__top',
+      buttons: [
+        {
+          id: 'visibility',
+          active: true, // active by default
+          // className: 'btn-toggle-borders',
+          label: '<u>B</u>',
+          command: 'sw-visibility', // Built-in command
+        },
+        {
+          id: 'export',
+          // className: 'btn-open-export',
+          // context: 'export-template', // For grouping context of buttons from the same panel
+          label: 'Code',
+          command: 'export-template',
+        },
+        {
+          id: 'show-json',
+          // className: 'btn-show-json',
+          // context: 'show-json',
+          label: 'JSON',
+          command(editor) {
+            editor.Modal.setTitle('JSON')
+              .setContent(
+                '<textarea readonly style="width:100%; height: 250px;">' +
+                  JSON.stringify(editor.getComponents(), null, 2) +
+                '</textarea>'
+              )
+              .open();
+          },
+        }
+      ]
+    });
+  </script>
+</body>
+
+</html>
